@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int main(void) {
+    char str[100000][2], a;
+    a = 'a';
+    int i = 0;
+    do {
+        scnaf("%c", a);
+        str[i][0] = a;
+        ++i;
+    while (a != '\n');
+    str[0][0] = 0;
+    char b;
+    int k;
+    for (int j = 1; j < i; ++j) {
+        b = str[0][0];
+        k = j;;
+        while (a[k] != b) {
+            ++k;
+            b = str[k-j][0];
+        }
+        str[j][1] = k;
+    }
+    int max = 0;
+    for (int j = 0; j < i; ++j) {
+        if (max < str[j][1]) max = str[j][1];
+    }
+    printf("%d", max);
+    return 0;
+}
